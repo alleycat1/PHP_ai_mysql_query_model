@@ -129,6 +129,7 @@ async function getResult() {
 	if(status1 == "failed")
 	{
 	    alert(message1);
+		setLoading(false);
 		return;
 	}
 
@@ -155,13 +156,13 @@ async function getResult() {
 			for(var i in message)
 				answer_data.push(message[i]);
 			jQuery("#grid_answer").jqxGrid('updatebounddata', 'cells');
-			setLoading(false);
 		}
 		else
 			alert("I am soory, but I have found no answers for your question.");
 	}
 	else
 		alert(message);
+	setLoading(false);
 }
 
 function setLoading(isLoading) {
