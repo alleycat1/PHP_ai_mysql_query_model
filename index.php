@@ -49,8 +49,11 @@
         }
     </style>
 </head>
-<body class='default' style="padding:10%">
+<body class='default' style="padding:10%; padding-top:5%">
     <table height="100%" width="80%">
+		<tr>
+			<td style="font-size:36px; text-align:center">AI Model for MySQL Database</td>
+		</tr>
         <tr height="35px">
             <td width="100%">
 				<table width="100%">
@@ -135,25 +138,30 @@ async function getResult() {
         body: JSON.stringify({ request_type:'getAvailable', question: query }),
     }).then((r) => r.json());
     
-	if(message.length > 0)
+	if(status == "success")
 	{
-		sourceAnswer.datafields.length = 0;
-		columnData.length = 0;
-		
-		for(var key in message[0])
+		if(message.length > 0)
 		{
-			sourceAnswer.datafields.push({name: key, type: 'string'});
-			columnData.push({ text: key, datafield: key, columntype: 'textbox', align: 'center', cellsalign: 'left', width: 100});
-		}
+			sourceAnswer.datafields.length = 0;
+			columnData.length = 0;
+			
+			for(var key in message[0])
+			{
+				sourceAnswer.datafields.push({name: key, type: 'string'});
+				columnData.push({ text: key, datafield: key, columntype: 'textbox', align: 'center', cellsalign: 'left', width: 100});
+			}
 
-		answer_data.length = 0;
-		for(var i in message)
-			answer_data.push(message[i]);
-		jQuery("#grid_answer").jqxGrid('updatebounddata', 'cells');
+			answer_data.length = 0;
+			for(var i in message)
+				answer_data.push(message[i]);
+			jQuery("#grid_answer").jqxGrid('updatebounddata', 'cells');
+			setLoading(false);
+		}
+		else
+			alert("I am soory, but I have found no answers for your question.");
 	}
 	else
-		alert("I am soory, but I have found no answers for your question.");
-    setLoading(false);
+		alert(message);
 }
 
 function setLoading(isLoading) {
