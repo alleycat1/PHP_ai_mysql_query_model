@@ -1,6 +1,6 @@
 <?php
 require "config.php";
-define('CREATE_SQL', "CREATE TABLE `ssiegel_customer`  (
+define('CREATE_SQL', "Here, order status contains 'Pending', 'Warehouse (Processing)', 'Complete', 'Canceled', 'Payment Issue', 'Refunded', 'Quote', 'Tech Docs', 'Documents Uploaded', 'Invoicing', 'Ship Prep', 'Treatment', 'Backordered', 'Confirmed', 'Warehouse Settled', 'Production', 'Received', 'Loading', 'Awaiting Approval', 'Awaiting Payment', 'Internal', 'Packed'). Table definition: CREATE TABLE `ssiegel_customer`  (
 	  `customer_id` int NOT NULL AUTO_INCREMENT,
 	  `customer_group_id` int NOT NULL,
 	  `store_id` int NOT NULL DEFAULT 0,
@@ -189,7 +189,7 @@ define('CREATE_SQL', "CREATE TABLE `ssiegel_customer`  (
 
 function getResult($request)
 {
-	$question = "Create a SQL for MySQL and give me it without explain, resulting \"$request\" from these tables, and don't change the field names dynamically after you named it: " . CREATE_SQL;
+	$question = "Create a SQL for MySQL and give me it without explain, resulting \"$request\" from these tables, and don't change the field names dynamically after you named it. " . CREATE_SQL;
 
 	$prompt = [["role"=> "system", "content"=> $question]];
 
