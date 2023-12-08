@@ -238,7 +238,7 @@ function getResult($request)
 			if (!$result) {
 				$res = array(
 					'status' => 'failed',
-					'message' => mysqli_error_code($db) . " - " . mysqli_error($db)
+					'message' => mysqli_error($db)
 				);
 				echo json_encode($res);
 				die;
