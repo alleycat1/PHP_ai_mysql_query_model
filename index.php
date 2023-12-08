@@ -97,7 +97,7 @@ var sourceAnswer =
 	 datatype: "array",
 	 datafields: []
 };
-var dataAdapterAnswer = new jQuery.jqx.dataAdapter(sourceAnswer);
+var dataAdapterAnswer = new $.jqx.dataAdapter(sourceAnswer);
 var columnData = [];
 $("#grid_answer").jqxGrid(
 {
@@ -160,7 +160,7 @@ async function getResult() {
 		answer_data.length = 0;
 		for(var i in message)
 			answer_data.push(message[i]);
-		jQuery("#grid_answer").jqxGrid('updatebounddata', 'cells');
+		$("#grid_answer").jqxGrid('updatebounddata', 'cells');
 	}
 	else
 		alert("I am soory, but I have found no answers for your question.");
@@ -168,6 +168,6 @@ async function getResult() {
 }
 
 function setLoading(isLoading) {
-	jQuery("#jqxInput").jqxInput({disabled: isLoading});
+	$("#jqxInput").jqxInput({disabled: isLoading});
 }
 </script>

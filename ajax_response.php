@@ -234,11 +234,11 @@ function getResult($request)
 				die;
 			}
 
-			$result = mysqli_query($conn, $sql);
+			$result = mysqli_query($db, $sql);
 			if (!$result) {
 				$res = array(
 					'status' => 'failed',
-					'message' => mysqli_error_code($conn) . " - " . mysqli_error($conn)
+					'message' => mysqli_error_code($db) . " - " . mysqli_error($db)
 				);
 				echo json_encode($res);
 				die;
@@ -253,7 +253,7 @@ function getResult($request)
 					$count++;
 				}
 			}
-			mysqli_close($conn);
+			mysqli_close($db);
 			
 			$res = array(
 				'status' => 'success',
