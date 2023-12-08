@@ -133,36 +133,38 @@ async function getResult() {
 		return;
 	}
 
+	if(message1 == "No")
+	{
+		alert("I can not understand the question.");
+		setLoading(false);
+		return;
+	}
+
 	const { status, message } = await fetch("ajax_response.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ request_type:'getAvailable', question: query }),
+        body: JSON.stringify({ request_type:'getResult', question: query }),
     }).then((r) => r.json());
     
-	if(status == "success")
+	if(message.length > 0)
 	{
-		if(message.length > 0)
+		sourceAnswer.datafields.length = 0;
+		columnData.length = 0;
+		
+		for(var key in message[0])
 		{
-			sourceAnswer.datafields.length = 0;
-			columnData.length = 0;
-			
-			for(var key in message[0])
-			{
-				sourceAnswer.datafields.push({name: key, type: 'string'});
-				columnData.push({ text: key, datafield: key, columntype: 'textbox', align: 'center', cellsalign: 'left', width: 100});
-			}
-
-			answer_data.length = 0;
-			for(var i in message)
-				answer_data.push(message[i]);
-			jQuery("#grid_answer").jqxGrid('updatebounddata', 'cells');
+			sourceAnswer.datafields.push({name: key, type: 'string'});
+			columnData.push({ text: key, datafield: key, columntype: 'textbox', align: 'center', cellsalign: 'left', width: 100});
 		}
-		else
-			alert("I am soory, but I have found no answers for your question.");
+
+		answer_data.length = 0;
+		for(var i in message)
+			answer_data.push(message[i]);
+		jQuery("#grid_answer").jqxGrid('updatebounddata', 'cells');
 	}
 	else
-		alert(message);
-	setLoading(false);
+		alert("I am soory, but I have found no answers for your question.");
+    setLoading(false);
 }
 
 function setLoading(isLoading) {

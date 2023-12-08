@@ -212,35 +212,35 @@ function getResult($request)
 
 	if (curl_errno($ch)) {
 		curl_close($ch);
-		$response = array(
+		$res = array(
 			'status' => 'failed',
 			'message' => 'Can not get valid SQL.'
 		);
-		echo json_encode($response);
+		echo json_encode($res);
 	} else {
 		$result = json_decode($response, true);
 		curl_close($ch);
-		if(isset($response['choices']))
+		if(isset($result['choices']))
 		{
 			$sql = $result['choices'][0]['message']['content'];
 
 			$db = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);  
   			if ($db->connect_errno) {  
-				$response = array(
+				$res = array(
 					'status' => 'failed',
 					'message' => 'Can not connect MySQL server.'
 				);
-				echo json_encode($response);
+				echo json_encode($res);
 				die;
 			}
 
 			$result = mysqli_query($conn, $sql);
 			if (!$result) {
-				$response = array(
+				$res = array(
 					'status' => 'failed',
 					'message' => mysqli_error_code($conn) . " - " . mysqli_error($conn)
 				);
-				echo json_encode($response);
+				echo json_encode($res);
 				die;
 			}
 
@@ -255,17 +255,17 @@ function getResult($request)
 			}
 			mysqli_close($conn);
 			
-			$response = array(
+			$res = array(
 				'status' => 'success',
 				'message' => $res
 			);
-			echo json_encode($response);
+			echo json_encode($res);
 		}else{
-			$response = array(
+			$res = array(
 				'status' => 'failed',
 				'message' => 'Can not get answer.'
 			);
-			echo json_encode($response);
+			echo json_encode($res);
 		}
 	}
 }
@@ -295,27 +295,27 @@ function getAvailable($request)
 
 	if (curl_errno($ch)) {
 		curl_close($ch);
-		$response = array(
+		$res = array(
 			'status1' => 'failed',
 			'message1' => 'Can not get valid query.'
 		);
-		echo json_encode($response);
+		echo json_encode($res);
 	} else {
 		$result = json_decode($response, true);
 		curl_close($ch);
-		if(isset($response['choices']))
+		if(isset($result['choices']))
 		{
-			$response = array(
+			$res = array(
 				'status1' => 'success',
 				'message1' => $result['choices'][0]['message']['content']
 			);
-			echo json_encode($response);
+			echo json_encode($res);
 		}else{
-			$response = array(
+			$res = array(
 				'status1' => 'failed',
 				'message1' => 'Can not get answer.'
 			);
-			echo json_encode($response);
+			echo json_encode($res);
 		}
 	}
 }
