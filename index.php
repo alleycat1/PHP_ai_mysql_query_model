@@ -120,6 +120,7 @@ async function getResult() {
     
     let query = $('#jqxInput').jqxInput('val');
     
+	/*
     const { status1, message1 } = await fetch("ajax_response.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -139,6 +140,7 @@ async function getResult() {
 		setLoading(false);
 		return;
 	}
+	*/
 
 	const { status, message } = await fetch("ajax_response.php", {
         method: "POST",
@@ -163,7 +165,7 @@ async function getResult() {
 		$("#grid_answer").jqxGrid('updatebounddata', 'cells');
 	}
 	else
-		alert("I am soory, but I have found no answers for your question.");
+		alert("I am sorry, but I have found no answers for your question.");
     setLoading(false);
 }
 
