@@ -111,7 +111,8 @@ $("#grid_answer").jqxGrid(
 	 columns: columnData
 });
 $("#clear_btn").click(function(event) {
-
+	document.getElementById('jqxInput').value = "";
+	document.getElementById('jqxInput').focus();
 	event.preventDefault();
 });
 
