@@ -1,7 +1,6 @@
 <?php 
  
-define('API_KEY', 'API Key'); 
-define('API_ENDPOINT', 'https://api.openai.com/v1/chat/completions');
+define('API_KEY', 'api key'); 
 
 // Database configuration  
 define('DB_HOST', 'localhost');  
