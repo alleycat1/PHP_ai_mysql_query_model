@@ -1,6 +1,6 @@
 <?php 
  
-define('API_KEY', 'Key'); 
+define('API_KEY', 'API Key'); 
 define('API_ENDPOINT', 'https://api.openai.com/v1/chat/completions');
 
 // Database configuration  

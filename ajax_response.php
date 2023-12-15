@@ -5,7 +5,7 @@ use Orhanerday\OpenAi\OpenAi;
 
 function getResult($request)
 {
-	$apiKey = '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';
+	$apiKey = 'apk_key';
 	$client = new OpenAi($apiKey);
 
 	$content = file_get_contents("content.txt");
