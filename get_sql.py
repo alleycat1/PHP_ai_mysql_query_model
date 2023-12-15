@@ -5,7 +5,7 @@ from openai import OpenAI
 import pandas as pd
 from pprint import pprint
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="key")
 
 def extract_information(question, model="gpt-3.5-turbo"):
 	completion = client.chat.completions.create(
