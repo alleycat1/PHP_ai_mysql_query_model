@@ -149,8 +149,9 @@ async function getResult() {
         body: JSON.stringify({ request_type:'getResult', question: query }),
     }).then((r) => r.json());
     
-	if(message.length > 0)
+	if(status=='success' && message.length > 0)
 	{
+        $("#grid_answer").jqxGrid("clear");
 		sourceAnswer.datafields.length = 0;
 		columnData.length = 0;
 		

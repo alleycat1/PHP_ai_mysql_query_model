@@ -7,6 +7,6 @@ define('API_ENDPOINT', 'https://api.openai.com/v1/chat/completions');
 define('DB_HOST', 'localhost');  
 define('DB_USERNAME', 'root');  
 define('DB_PASSWORD', '');  
-define('DB_NAME', 'test_db'); 
+define('DB_NAME', 'steve'); 
  
 ?>
